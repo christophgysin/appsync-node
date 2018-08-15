@@ -10,8 +10,10 @@ const {
 
 const createClient = (url, jwtToken, types = [], region = AWS_REGION) => {
   const fragmentMatcher = new IntrospectionFragmentMatcher({
-    __schema: {
-      types,
+    introspectionQueryResultData: {
+      __schema: {
+        types,
+      },
     },
   });
 
