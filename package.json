@@ -17,6 +17,8 @@
     "aws-sdk": "^2.286.2",
     "graphql-tag": "^2.9.2",
     "isomorphic-fetch": "^2.2.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
     "ws": "^6.0.0"
   },
   "devDependencies": {

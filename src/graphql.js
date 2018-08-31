@@ -1,5 +1,6 @@
 const AWSAppSyncClient = require('aws-appsync').default;
 const { IntrospectionFragmentMatcher } = require('apollo-cache-inmemory');
+const request = require('request-promise-native');
 
 // Let's pretend we're a web browser :(
 require('./browser-hack');
@@ -32,6 +33,34 @@ const createClient = (url, jwtToken, types = [], region = AWS_REGION) => {
   return appSyncClient.hydrated();
 };
 
+const createHttpClient = async (url, tokenFunc) => {
+  // TODO: renew token
+  const token = await tokenFunc();
+
+  const client = async (operationName, query, variables = {}) => {
+    const options = {
+      url,
+      method: 'POST',
+      headers: {
+        Authorization: token,
+      },
+      body: {
+        operationName,
+        variables,
+        query,
+      },
+      json: true,
+    };
+
+    const response = await request(options);
+
+    return response.data;
+  };
+
+  return client;
+};
+
 module.exports = {
   createClient,
+  createHttpClient,
 };
