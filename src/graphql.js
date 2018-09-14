@@ -46,8 +46,8 @@ const createHttpClient = async (url, tokenFunc) => {
       },
       body: {
         operationName,
-        variables,
         query,
+        variables,
       },
       json: true,
     };
