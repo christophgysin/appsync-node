@@ -54,7 +54,7 @@ const createHttpClient = async (url, tokenFunc) => {
 
     const response = await request(options);
 
-    return response.data;
+    return response;
   };
 
   return client;
