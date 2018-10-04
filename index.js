@@ -1,5 +1,4 @@
 const {
-  createClient,
   createHttpClient,
 } = require('./src/graphql');
 const {
@@ -7,7 +6,6 @@ const {
 } = require('./src/cognito');
 
 module.exports = {
-  createClient,
   createHttpClient,
   getIdToken,
 };
